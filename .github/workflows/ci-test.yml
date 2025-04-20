@@ -27,3 +27,10 @@ jobs:
 
       - name: Run Tests
         run: mvn test
+      - name: Create Issue on Test Failure
+      if: failure()
+      uses: JasonEtco/create-an-issue@v2
+      with:
+        title: "🚨 自动缺陷报告：测试失败"
+        body: "GitHub Actions 运行失败，请检查日志并修复问题。"
+        token: ${{ secrets.GITHUB_TOKEN }}
