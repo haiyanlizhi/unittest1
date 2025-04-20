@@ -2,8 +2,7 @@ name: Smoke Test Workflow
 
 on:
   push:
-    branches:
-      - main
+
   pull_request:
     branches:
       - main
