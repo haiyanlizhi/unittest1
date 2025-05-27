@@ -177,8 +177,7 @@ public class ListUtils {
         for (final E e : larger) {
             if (hashSet.contains(e)) {
                 result.add(e);
-                break;
-                //hashSet.remove(e);
+                hashSet.remove(e);
             }
         }
         return result;
