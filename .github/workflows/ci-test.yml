@@ -1,11 +1,10 @@
+
 name: Smoke Test Workflow
 
 on:
   push:
-
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build-test:
@@ -24,12 +23,19 @@ jobs:
       - name: Build Project
         run: mvn clean install
 
-      - name: Run Tests
-        run: mvn test
+      - name: Run Specific Tests
+        run: |
+          mvn test -Dtest=ListUtilsManualTest
+          mvn test -Dtest=ListUtilsTest
+
       - name: Create Issue on Test Failure
         if: failure()
         uses: JasonEtco/create-an-issue@v2
         with:
-         title: "🚨 自动缺陷报告：测试失败"
-         body: "GitHub Actions 运行失败，请检查日志并修复问题。"
-         token: ${{ secrets.GITHUB_TOKEN }}
+          title: "🚨 自动缺陷报告：ListUtils测试失败"
+          body: |
+            GitHub Actions检测到ListUtils相关测试失败：
+            - ListUtilsManualTest.java
+            - ListUtilsTest.java
+            请检查测试日志并修复问题。
+          token: ${{ secrets.GITHUB_TOKEN }}
