@@ -32,7 +32,7 @@ jobs:
         if: failure()
         uses: JasonEtco/create-an-issue@v2
         with:
-          title: "🚨 自动缺陷报告：ListUtils测试失败"
+          title: "🚨 缺陷报告：ListUtils测试失败"
           body: |
             GitHub Actions检测到ListUtils相关测试失败：
             - ListUtilsManualTest.java
